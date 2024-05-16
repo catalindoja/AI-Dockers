@@ -30,14 +30,15 @@ WORKDIR /workspace/crewai-parser-28/
 
 COPY ./workspace/crewai-parser-28/pyproject.toml .
 COPY ./workspace/crewai-parser-28/poetry.lock .
+COPY ./workspace/crewai-parser-28/MistralModelfile .
 COPY ./workspace/crewai-parser-28/create-mistral-model-file.sh .
 
 # Install project dependencies
 RUN poetry install --no-root
 
-#RUN ollama serve &
+RUN chmod +x create-mistral-model-file.sh
 
-#RUN ./create-mistral-model-file.sh
+RUN ./create-mistral-model-file.sh
 
 EXPOSE 8888
 
